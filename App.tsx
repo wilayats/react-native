@@ -5,9 +5,11 @@
  * @format
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import type {PropsWithChildren} from 'react';
 import {
+    Alert,
+    Button,
     SafeAreaView,
     ScrollView,
     StatusBar,
@@ -24,9 +26,12 @@ import {
     LearnMoreLinks,
     ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import {Provider} from "react-redux";
-import {store} from "./Redux/store.ts";
+import { useDispatch} from "react-redux";
+
 import Layout from "./App/Layouts/Layout.tsx";
+import Component1 from "./Components/Component1.tsx";
+import Component2 from "./Components/Component2.tsx";
+import AuthAction from "./Redux/Actions/AuthAction.ts";
 
 type SectionProps = PropsWithChildren<{
     title: string;
@@ -60,19 +65,33 @@ function Section({children, title}: SectionProps): React.JSX.Element {
 
 function App(props: any): React.JSX.Element {
     const isDarkMode = useColorScheme() === 'dark';
+    const dispatch = useDispatch();
 
     const backgroundStyle = {
         backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
     };
 
+    const [show, setShow] = useState('hello')
+
+    const clickButton = (e: any) => {
+        console.log('hello world')
+        // @ts-ignore
+        dispatch(AuthAction.login({text:Math.random(1,30000)}));
+    }
+
     return (
-        <Provider store={store}>
-            <Layout backgroundStyle={backgroundStyle} {...props}>
-                <View
-                    style={{
-                        backgroundColor: isDarkMode ? Colors.black : Colors.white,
-                    }}>
-                    <Section title="Step One">
+        <Layout backgroundStyle={backgroundStyle} {...props}>
+            <View
+                style={{
+                    backgroundColor: isDarkMode ? Colors.black : Colors.white,
+                }}>
+
+
+                <Button onPress={clickButton} title={'Press Button'}/>
+
+                <Component1/>
+                <Component2/>
+                {/* <Section title="Step One">
                         Edit <Text style={styles.highlight}>App.tsx</Text> to change this
                         screen and then come back to see your edits.
                     </Section>
@@ -85,11 +104,9 @@ function App(props: any): React.JSX.Element {
                     <Section title="Learn More">
                         Read the docs to discover what to do next:
                     </Section>
-                    <LearnMoreLinks/>
-                </View>
-            </Layout>
-
-        </Provider>
+                    <LearnMoreLinks/>*/}
+            </View>
+        </Layout>
     );
 }
 

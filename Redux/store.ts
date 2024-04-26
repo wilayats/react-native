@@ -1,17 +1,23 @@
-import {configureStore} from "@reduxjs/toolkit";
+import { applyMiddleware, configureStore } from "@reduxjs/toolkit";
+
+import thunk from 'redux-thunk';
 import {rootReducer} from "./Reducers/index.ts";
 
-
-
-export const store = configureStore({
+// Configure store with Redux Toolkit's `configureStore` instead of `createStore`
+// @ts-ignore
+const store = configureStore({
     reducer: rootReducer,
-    middleware : getDefaultMiddleware =>
-        getDefaultMiddleware({
-            thunk: {
-                extraArgument: myCustomApiService
-            }
-        })
+    // @ts-ignore
+    devTools: process.env.NODE_ENV !== 'production', // Enable devtools only in development
 });
-const myCustomApiService = () => {
-    return true
-}
+/*const middleware = getDefaultMiddleware => {
+    return [
+        ...getDefaultMiddleware(),
+        thunk
+    ];
+};*/
+
+// Assigning store to next wrapper
+const makeStore = () => store;
+
+export {  store };

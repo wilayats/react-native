@@ -3,5 +3,5 @@ import AuthReducer from "./AuthReducer.ts";
 
 
 export const rootReducer = combineReducers({
-    AuthReducer
+    auth:AuthReducer
 });

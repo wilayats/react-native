@@ -14,14 +14,14 @@ project.ext.envConfigFiles = [
 ]
 
  android {
-     namespace 'com.ClientPortal'
+     namespace 'com.clientportal'
          defaultConfig {
-             applicationId 'com.ClientPortal'
+             applicationId 'com.clientportal'
              minSdkVersion rootProject.ext.minSdkVersion
              targetSdkVersion rootProject.ext.targetSdkVersion
              versionCode 1
              versionName "1.0"
-             resValue 'string', 'build_config_package','com.ClientPortal'
+             resValue 'string', 'build_config_package','com.clientportal'
 
          }
  }
@@ -121,7 +121,7 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
-    /*flavorDimensions 'env'
+    flavorDimensions 'env'
     productFlavors {
             development {
                 dimension 'env'
@@ -135,7 +135,7 @@ android {
                 dimension 'env'
                 applicationIdSuffix ""
             }
-    }*/
+    }
 
 }
 

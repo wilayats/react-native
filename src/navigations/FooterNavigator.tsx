@@ -1,21 +1,29 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
-import Home from "../screens/Home";
-import Test from "../screens/Test";
-import {Icon} from "react-native-paper";
+import {BOTTOM_HEIGHT} from "../utils/constants.ts";
+import {menuScreens} from "../screens.tsx";
 
 const Tab = createBottomTabNavigator();
 
-const FooterStack = () => {
+const FooterStack = (props: any) => {
+
+    const menus = menuScreens.filter((item) => item.isTab);
     return (
         <Tab.Navigator
-            screenOptions={{headerShown: false}}
-            initialRouteName={'Home'}
+            screenOptions={{headerShown: false, tabBarStyle: {height: BOTTOM_HEIGHT}}}
         >
-            <Tab.Screen name="Home" component={Home}/>
-            <Tab.Screen name="Test" component={Test}/>
-            <Tab.Screen name="Tests" component={Test}/>
-
+            {
+                menus.map((row: any, index: any) => {
+                    const {name, Component} = row;/**/
+                    return (
+                        <Tab.Screen
+                            key={name}
+                            name={name}
+                            component={Component}
+                        />
+                    )
+                })
+            }
         </Tab.Navigator>
     );
 };

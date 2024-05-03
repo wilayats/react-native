@@ -5,14 +5,12 @@ import AuthApplication from '../navigations/authNavigator'
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import {useAppSelector} from "../../Redux/hooks.ts";
-import {
-
-    Text, View
-} from 'react-native';
+import {Text, View} from 'react-native';
 import FooterStack from "../navigations/FooterNavigator.tsx";
 import Home from "../screens/Home";
 import Test from "../screens/Test";
 import {createDrawerNavigator} from '@react-navigation/drawer';
+import {isBottomTabVisible, menuScreens} from "../screens.tsx";
 
 export const AppStack = createNativeStackNavigator();
 export const Drawer = createDrawerNavigator();
@@ -34,27 +32,40 @@ function EmptyScreen1() {
 const Modules = (props: any) => {
     const isLoggedIn = useAppSelector((state: any) => state.auth.user.isLoggedIn)
     return (
-        <NavigationContainer>
-            <AppStack.Navigator
-                screenOptions={{
-                    headerShown: false,
-                }}
-                initialRouteName={'Footer'}
-            >
-                {!isLoggedIn ? (
-                    <AppStack.Screen name='AuthApp' component={AuthApplication}/>
-                ) : (
-                    <>
-                        <AppStack.Screen name={'RootHome'} component={RootHome}/>
-                        <AppStack.Screen name='Footer' component={FooterStack}/>
-                        <AppStack.Screen name='App' component={ApplicationStack}/>
-                        <AppStack.Screen name={'Home'} component={Home}/>
-                        <AppStack.Screen name={'Test'} component={Test}/>
+        <>
+            <NavigationContainer>
+                <AppStack.Navigator
+                    screenOptions={{
+                        headerShown: false,
+                    }}
+                    initialRouteName={'Footer'}
+                >
+                    {!isLoggedIn ? (
+                        <AppStack.Screen name='AuthApp' component={AuthApplication}/>
+                    ) : (
+                        <>
+                            {
+                                isBottomTabVisible > 0 && (
+                                    <AppStack.Screen name={'Footer'} component={FooterStack} {...props}/>
+                                )
+                            }
+                            <AppStack.Screen name='App' component={ApplicationStack}/>
+                            {
+                                menuScreens.map((row: any, index: any) => {
+                                    return (
+                                        <AppStack.Screen
+                                            key={index}
+                                            component={row.Component}
+                                            name={row.name}/>
+                                    )
+                                })
+                            }
+                        </>
+                    )}
+                </AppStack.Navigator>
+            </NavigationContainer>
+        </>
 
-                    </>
-                )}
-            </AppStack.Navigator>
-        </NavigationContainer>
     )
 }
 export default Modules

@@ -5,12 +5,12 @@ export const menuScreens = [
     {
         name:'Home',
         Component: Home,
-        isTab:false
+        isTab:true
     },
     {
         name:'Test',
         Component:Test,
-        isTab:false
+        isTab:true
     }
 ];
 export const isBottomTabVisible = menuScreens.filter((item) => item.isTab).length;

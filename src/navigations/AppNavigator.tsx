@@ -1,5 +1,4 @@
 import React from 'react';
-import MainHeader from '../components/MainHeader';
 import {AppStack} from '../components/Modules';
 import {menuScreens} from '../screens.tsx';
 

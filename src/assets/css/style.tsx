@@ -2,10 +2,12 @@ import { StyleSheet } from "react-native";
 import { w, h } from '../../utils/constants';
 
 export const PRIMARY_THEME = {
-    PRIMARY_COLOR: '#0C4C38',
-    ERROR_COLOR: '#FF0000'
+    PRIMARY_COLOR: '#4F9A90',
+    PRIMARY_COLOR_TRANSPARENT: '#4F9A9019',
+    BACKGROUND_COLOR: '#FBFFFE',
+    INACTIVE_COLOR: '#444546',
+    ERROR_COLOR: '#FF0000',
 }
-
 const styles = StyleSheet.create({
     input: {
         height: 40,

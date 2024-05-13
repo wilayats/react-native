@@ -1,10 +1,12 @@
 import Config from "react-native-config";
-import {Dimensions} from "react-native";
+import {Dimensions,Platform} from "react-native";
 
 export const config = {
     ENV: Config.ENV,
     API_BASE_URL: Config.API_BASE_URL ?? ''
 }
+const platform = Platform.OS;
+const isAndroid = Platform.OS === 'android';
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -34,8 +36,20 @@ export const dynamicLayout = (evt: any, setDimension: any) => {
     })
 }
 
+const FontBold = 'Gilroy-Bold';
+const FontSemiBold = 'Gilroy-SemiBold';
+const FontRegular = 'Gilroy-Regular';
+const FontMedium = 'Gilroy-Medium';
+const FontLightItalic = 'Gilroy-LightItalic';
 export {
     layout,
     w,
-    h
+    h,
+    FontBold,
+    FontSemiBold,
+    FontRegular,
+    FontMedium,
+    FontLightItalic,
+    platform,
+    isAndroid
 }

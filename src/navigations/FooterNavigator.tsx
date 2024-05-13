@@ -10,7 +10,15 @@ const FooterStack = (props: any) => {
     const menus = menuScreens.filter((item) => item.isTab);
     return (
         <Tab.Navigator
-            screenOptions={{headerShown: false, tabBarStyle: {height: BOTTOM_HEIGHT}}}
+            screenOptions={{
+                headerShown: false,
+                tabBarStyle: {
+                    height: BOTTOM_HEIGHT,
+                    borderTopLeftRadius: 16,
+                    borderTopRightRadius: 16,
+                    position: 'absolute',
+                }
+        }}
         >
             {
                 menus.map((row: any, index: any) => {

@@ -15,10 +15,10 @@ export const StyleLayout = StyleSheet.create({
     mainContent: {
         paddingHorizontal: 10,
         paddingVertical: 10,
-        backgroundColor:'red',
+       /* backgroundColor:'red',
         borderWidth:0,
         borderStyle:'solid',
-        borderColor:'red',
+        borderColor:'red',*/
     },
     mainFooter:{},
 })

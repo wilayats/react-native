@@ -9,7 +9,7 @@ const Test = (props:any) => {
     return(
         <View>
             <Layout>
-                <Text>Text Screen</Text>
+                <Text>Test Screen</Text>
                 <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate('Home')}>
                     <Text style={styles.buttonText}>Go To Home</Text>
                 </TouchableOpacity>

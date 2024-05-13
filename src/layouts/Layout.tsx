@@ -1,5 +1,5 @@
 import {View} from "react-native";
-import MainHeader from "../components/MainHeader.tsx";
+import {MainHeader} from "../components/MainHeader.tsx";
 import {StyleLayout} from "../assets/css/StyleLayout.tsx";
 import {BOTTOM_HEIGHT, dynamicLayout, layout} from "../utils/constants.ts";
 import {useEffect, useState} from "react";
@@ -16,7 +16,6 @@ const Layout = (props: any) => {
             <View
                 onLayout={(evt: any) => dynamicLayout(evt, setHeadersDimension)}
                 style={StyleLayout.mainHeader}>
-                <MainHeader/>
             </View>
             <View style={{...StyleLayout.mainContent, minHeight: mainContentHeight}}>
                 {props.children}
